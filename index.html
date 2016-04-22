@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+		/>
+		<style type="text/css">
+			span {
+				padding: 10px 20px;
+				margin: 8px;
+				background-color: gray;
+				display: inline-block;
+			}
+			h1 {
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>photoBrowser</h1>
+			<mark>
+				使用前请详细阅读 文档 使用规则
+			</mark>
+		</header>
+	</body>
+</html>
+<script type="text/javascript">
+	var photoBrowser;
+	apiready = function() {
+		photoBrowser = api.require('photoBrowser');
+		fnOpen();
+	};
+	function fnClose() {
+		photoBrowser.close();
+	}
+
+	function fnShow() {
+		photoBrowser.show();
+		api.bringFrameToFront({
+			from : 'TEST'
+		});
+	}
+
+	function fnHide() {
+		photoBrowser.hide();
+	}
+
+	function fnSetindex() {
+		photoBrowser.setIndex({
+			index : 0
+		});
+	}
+
+	function fnGetindex() {
+		photoBrowser.getIndex(function(ret) {
+			alert(JSON.stringify(ret));
+		});
+	}
+
+	function fnGetimage() {
+		photoBrowser.getImage({
+			index : 0
+		}, function(ret) {
+			alert(JSON.stringify(ret));
+		});
+	}
+
+	function fnSetimage() {
+		photoBrowser.setImage({
+			index : 1,
+			image : 'http://img3.imgtn.bdimg.com/it/u=1781812398,2756950693&fm=21&gp=0.jpg'
+		});
+	}
+
+	function fnAppendimage() {
+		photoBrowser.appendImage({
+			images : ['http://img1.cache.netease.com/catchpic/A/AA/AA8A9C51AF2142C5C861A0917DE23778.jpg']
+		});
+	}
+
+	function fnDeleteimage() {
+		photoBrowser.deleteImage({
+			index : 2
+		});
+	}
+
+	function fnClearCache() {
+		photoBrowser.clearCache();
+	}
+
+	function fnOpen() {
+		photoBrowser.open({
+			images : ['http://img002.21cnimg.com/photos/album/20160128/m600/107385562E672393C796BDAE2D2331FF.jpeg', 'http://img1.cache.netease.com/catchpic/3/30/30C60DCC88EEF0AA507740007AB08251.jpg'],
+			activeIndex : 0,
+			placeholderImg : 'widget://image/apicloud.png',
+			bgColor : '#000'
+		}, function(ret) {
+			if (ret.eventType == 'show') {
+				api.openFrame({
+					name : 'TEST',
+					url : './html/main.html',
+					rect : {
+						x : 0,
+						y : api.winHeight / 2,
+						w : 'auto',
+						h : api.winHeight / 2
+					}
+				});
+			}
+			api.bringFrameToFront({
+				from : 'TEST'
+			});
+		});
+	}
+</script>

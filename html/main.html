@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+		/>
+		<style type="text/css">
+			span {
+				padding: 10px 20px;
+				margin: 8px;
+				background-color: gray;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<span tapmode onclick="fn('Open')">open()</span>
+		<span tapmode onclick="fn('Close')">close()</span>
+		<span tapmode onclick="fn('Hide')">hide()</span>
+		<span tapmode onclick="fn('Show')">show()</span>
+		<span tapmode onclick="fn('Setindex')">setindex()</span>
+		<span tapmode onclick="fn('Getindex')">getindex()</span>
+		<span tapmode onclick="fn('Getimage')">getimage()</span>
+		<span tapmode onclick="fn('Setimage')">setimage()</span>
+		<span tapmode onclick="fn('Appendimage')">appendimage()</span>
+		<span tapmode onclick="fn('Deleteimage')">deleteimage()</span>
+		<span tapmode onclick="fn('ClearCache')">clearCache()</span>
+	</body>
+</html>
+<script type="text/javascript">
+
+	function fn( name ){
+		api.execScript({
+		    name: 'root',
+		    script: 'fn'+name+'()'
+		});
+	}
+</script>
